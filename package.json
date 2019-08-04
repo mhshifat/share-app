@@ -7,7 +7,11 @@
     "start": "node dist/server",
     "serve": "nodemon --exec babel-node src/server",
     "build": "babel src -d dist",
-    "fix": "eslint src --fix"
+    "fix": "eslint src --fix",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+  },
+  "engines": {
+    "node": "10.16.0"
   },
   "author": "Mehedi Hassan Shifat",
   "license": "ISC",
