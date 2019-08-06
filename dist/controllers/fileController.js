@@ -33,9 +33,10 @@ function () {
 
           case 2:
             getFile = _context.sent;
+            console.log(getFile);
             res.download(_path["default"].join(__dirname, "..", "..", "uploads", getFile.filename));
 
-          case 4:
+          case 5:
           case "end":
             return _context.stop();
         }

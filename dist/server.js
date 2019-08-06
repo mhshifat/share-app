@@ -2,6 +2,8 @@
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
+var _path = _interopRequireDefault(require("path"));
+
 var _express = _interopRequireDefault(require("express"));
 
 var _bodyParser = _interopRequireDefault(require("body-parser"));
@@ -24,9 +26,13 @@ app.use(_bodyParser["default"].json());
 app.use(_bodyParser["default"].urlencoded({
   extended: true
 }));
+app.use(_express["default"]["static"](_path["default"].join(__dirname, "..", "client", "build")));
 app.use("/api/v1/files", _fileRoutes["default"]);
 app.use("/api/v1/shares", _shareRoutes["default"]);
 app.use("/", _appRoutes["default"]);
+app.get("*", function (req, res) {
+  res.sendFile(_path["default"].join(__dirname, "..", "client", "build", "index.html"));
+});
 app.use(_appMiddlewares.globalMiddleware);
 (0, _conn["default"])().then(function () {
   app.listen(_config.port, function () {

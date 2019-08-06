@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.downloadFiles = exports.createShare = void 0;
+exports.getShare = exports.downloadFiles = exports.createShare = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -106,7 +106,7 @@ function () {
                         to: req.body.to,
                         subject: "[ SHARE ] File Download Invitition",
                         text: req.body.message,
-                        html: (0, _testEmailTemplate["default"])("".concat(_config.baseUrl, "/api/v1/shares/download/").concat(createdShares[0].id))
+                        html: (0, _testEmailTemplate["default"])("".concat(_config.baseUrl, "/download/").concat(createdShares[0].id))
                       });
 
                     case 13:
@@ -181,3 +181,37 @@ function () {
   };
 }());
 exports.downloadFiles = downloadFiles;
+var getShare = (0, _catchAsync["default"])(
+/*#__PURE__*/
+function () {
+  var _ref4 = (0, _asyncToGenerator2["default"])(
+  /*#__PURE__*/
+  _regenerator["default"].mark(function _callee4(req, res) {
+    var getShareainfo;
+    return _regenerator["default"].wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.next = 2;
+            return _shareModel["default"].findById(req.params.id).populate("files");
+
+          case 2:
+            getShareainfo = _context4.sent;
+            res.status(200).json({
+              success: true,
+              share: getShareainfo
+            });
+
+          case 4:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+
+  return function (_x5, _x6) {
+    return _ref4.apply(this, arguments);
+  };
+}());
+exports.getShare = getShare;

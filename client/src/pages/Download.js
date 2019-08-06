@@ -25,7 +25,7 @@ class Download extends Component {
 
   handleAllDownload = async () => {
     const { share } = this.state;
-    const url = `/api/v1/shares/download/${share.id}`;
+    const url = `/api/v1/shares/download/${share._id}`;
     await axios.get(url);
   };
 
@@ -47,7 +47,11 @@ class Download extends Component {
                 {share &&
                   share.files.map(file => (
                     <li className="download-file" key={file._id}>
-                      <span>file.originalname</span>
+                      <span>
+                        {file.originalname.length > 30
+                          ? file.originalname.substring(0, 30) + "..."
+                          : file.originalname}
+                      </span>
                       <i
                         className="material-icons"
                         onClick={this.handleSingleDownload(file._id)}

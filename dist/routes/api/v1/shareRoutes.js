@@ -18,6 +18,7 @@ var _shareMiddlewares = require("../../../middlewares/shareMiddlewares");
 var router = _express["default"].Router();
 
 router.route("/").post(_shareMiddlewares.uploadFile.array("files"), shareController.createShare);
+router.route("/:id").get(shareController.getShare);
 router.route("/download/:id").get(shareController.downloadFiles);
 var _default = router;
 exports["default"] = _default;

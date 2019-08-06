@@ -5,7 +5,7 @@ import nodemailer from "nodemailer";
 import catchAsync from "../utils/catchAsync";
 import File from "../models/fileModel";
 import Share from "../models/shareModel";
-import { mailPass, clientUrl } from "../config/config";
+import { mailPass, baseUrl } from "../config/config";
 import testEmailTemplate from "../utils/templates/testEmailTemplate";
 
 export const createShare = catchAsync(async (req, res) => {
@@ -33,7 +33,7 @@ export const createShare = catchAsync(async (req, res) => {
       to: req.body.to,
       subject: "[ SHARE ] File Download Invitition",
       text: req.body.message,
-      html: testEmailTemplate(`${clientUrl}/download/${createdShares[0].id}`)
+      html: testEmailTemplate(`${baseUrl}/download/${createdShares[0].id}`)
     });
 
     await transporter.sendMail(info);
