@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.route("/").post(uploadFile.array("files"), shareController.createShare);
 
+router.route("/:id").get(shareController.getShare);
+
 router.route("/download/:id").get(shareController.downloadFiles);
 
 export default router;
