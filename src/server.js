@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import path from "path";
+import cors from "cors";
 import express from "express";
 import bodyParser from "body-parser";
 import DbConnection from "./database/conn";
@@ -11,6 +12,7 @@ import fileRoutes from "./routes/api/v1/fileRoutes";
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "..", "client", "build")));

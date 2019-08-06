@@ -12,6 +12,7 @@ class Download extends Component {
     try {
       const url = `/api/v1/shares/${this.props.match.params.id}`;
       const res = await axios.get(url);
+      console.log("res", res);
       this.setState({ share: res.data.share });
     } catch (err) {
       console.log(err);
