@@ -15,6 +15,6 @@ var appController = _interopRequireWildcard(require("../../../controllers/appCon
 
 var router = _express["default"].Router();
 
-router.route("/").get(appController.appRoot);
+router.route("/api").get(appController.appRoot);
 var _default = router;
 exports["default"] = _default;

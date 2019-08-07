@@ -3,6 +3,6 @@ import * as appController from "../../../controllers/appController";
 
 const router = express.Router();
 
-router.route("/").get(appController.appRoot);
+router.route("/api").get(appController.appRoot);
 
 export default router;
